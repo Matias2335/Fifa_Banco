@@ -215,7 +215,4 @@ Tratamento básico de indisponibilidade (ex.: `ServerSelectionTimeoutError` no M
 
 ---
 
-## 13) Observações finais e boas práticas
-- **Credenciais:** evite senhas em código/versionamento. Sugestão: `.env` + `os.getenv()` (adapte `postgres.py`, `mongodb.py`).  
-- **Carga inicial:** os CSV/JSON podem ser importados para testes rápidos (psql, mongoimport, cqlsh).  
-- **Evolução:** para Cassandra, modele *partition keys* conforme *query pattern* alvo se surgirem filtros por `posicao`, `raridade`, etc.
+
