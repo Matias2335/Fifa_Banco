@@ -1,22 +1,25 @@
 # Polyglot Persistence — Fifa Ultimate Team (FUT)
 
-**Disciplina:** CC6240 — Tópicos Avançados de Banco de Dados  
-**Tema:** Fifa Ultimate Team (catálogo de jogadores, usuários e transações)  
-**Arquitetura:** S1 ↔ S2 com **PostgreSQL** (RDB), **MongoDB** (DB1) e **Cassandra** (DB2)
+**Disciplina:** CC6240 — Tópicos Avançados de Banco de Dados
+**Tema:** Fifa Ultimate Team (catálogo de jogadores, usuários e transações)
 
 ---
 
 ## 1) Objetivo do projeto
-Estudar **persistência poliglota**, escolhendo o tipo de banco de dados com base no **uso do dado pela aplicação**. O projeto implementa dois serviços:
 
-- **S1 (cliente/GUI):** aplicativo Tkinter que dispara requisições a S2 (inserção e leitura) e **registra logs** de todas as chamadas em `s1_logs.jsonl` (requisitações + respostas), atendendo ao requisito de auditoria do funcionamento do S1.  
-- **S2 (backend/Flask):** expõe endpoints REST e orquestra o armazenamento/consulta nos bancos adequados.
+O projeto tem como objetivo estudar a **persistência poliglota**, escolhendo diferentes tipos de banco de dados conforme o tipo de informação utilizada pela aplicação.
 
-O **tema** (FUT) foi escolhido por combinar dados **relacionais** (usuários/relacionamentos), **semi‑estruturados** (estatísticas diversas por jogador) e **colunar/escala** (catálogo de jogadores/consultas de leitura).
+O tema escolhido foi o **Fifa Ultimate Team**, pois os integrantes do grupo jogam Fifa desde o **Fifa 13** e têm grande familiaridade com o jogo, o que facilita o entendimento dos dados e a modelagem do sistema. Além disso, o tema proporciona diferentes tipos de informações, como dados de usuários, estatísticas de jogadores e transações de compra e venda.
+
+Foram desenvolvidos dois serviços principais:
+
+* **S1 (cliente/GUI):** responsável por duas funções principais — exibir os dados vindos dos três bancos de dados (PostgreSQL, MongoDB e Cassandra) e permitir a **inserção de novos dados** em cada um deles, incluindo **usuários**, **transações**, **estatísticas de jogadores** e **jogadores**. Todas as requisições e respostas são registradas em um arquivo de log (`s1_logs.jsonl`).
+* **S2 (backend):** sistema que recebe as requisições do S1 e realiza o armazenamento e leitura dos dados nos bancos apropriados.
 
 ---
 
-## 2) Arquitetura (exigida)
+## 2) Arquitetura
+
 ```mermaid
 graph LR
     S1 <--> S2
@@ -25,194 +28,169 @@ graph LR
     S2 <--> DB2[(Cassandra)]
 ```
 
-- **RDB (PostgreSQL):** `fut.usuarios` e `fut.transacoes` (integridade, joins, ordenação).  
-- **DB1 (MongoDB):** `Informações.Estatisticas_jogador` (flexível por jogador).  
-- **DB2 (Cassandra):** `futdb.jogadores` (catálogo simples, leitura rápida e horizontalmente escalável).
+* **RDB (PostgreSQL):** armazena os usuários e as transações realizadas.
+* **DB1 (MongoDB):** guarda as estatísticas detalhadas de cada jogador.
+* **DB2 (Cassandra):** armazena os dados gerais dos jogadores.
 
 ---
 
-## 3) Justificativa das escolhas
-- **PostgreSQL (Relacional):** Ideal para **usuários** e **transações** por exigir **consistência**, **chaves estrangeiras** e **consultas relacionais** (joins por `id_usuario`, ordenação por data).  
-- **MongoDB (Document Store):** Estatísticas de jogadores variam (campos, versões, granularidades). O **modelo flexível** de documentos evita migrações frequentes e suporta evolução do schema.  
-- **Cassandra (Wide‑Column):** Tabela de **jogadores** com leituras massivas, pouco relacionamento e chave de partição simples. Permite **escrita/leitura** distribuída e **baixa latência** em escala. No projeto usamos **query‑pattern simples por id** e listagem ordenada em memória (Cassandra não faz `ORDER BY` arbitrário).
+## 3) Justificativa dos bancos utilizados
+
+* **PostgreSQL:** utilizado para usuários e transações, pois exige estrutura e integridade referencial.
+* **MongoDB:** escolhido para armazenar estatísticas de jogadores por permitir dados mais flexíveis e variados.
+* **Cassandra:** usado para armazenar informações gerais dos jogadores, garantindo consultas rápidas e fácil expansão.
 
 ---
 
-## 4) Entidades e mapeamento de persistência
-| Entidade | Campos principais (exemplos) | Banco/Modelo |
-|---|---|---|
-| **Usuário** | `id_usuario`, `nickname`, `email`, `senha_hash`, `pais_origem`, `data_criacao` | **PostgreSQL** (`fut.usuarios`) |
-| **Transação** | `id_transacao`, `id_usuario`, `jogador_id`, `tipo`(compra/venda), `valor`, `data_transacao` | **PostgreSQL** (`fut.transacoes`) |
-| **Estatística do Jogador** | `id`, `Nome`, `Overall`, `Ritmo`, `Chute`, `Passe`, `Dribles`, `Defesa`, `Físico`, ... | **MongoDB** (`Informações.Estatisticas_jogador`) |
-| **Jogador (catálogo)** | `id`, `nome`, `overall`, `posicao`, `quantidade`, `raridade`, `valor` | **Cassandra** (`futdb.jogadores`) |
+## 4) Entidades principais
 
-Bases de dados/datasets no repositório:  
-- `usuarios.csv`, `transacoes.csv`, `jogadores.csv` e `Informações.Estatisticas_jogador.json` (amostras para carga/validação).
+| Entidade                   | Campos principais                                                  | Banco de dados |
+| -------------------------- | ------------------------------------------------------------------ | -------------- |
+| **Usuário**                | id_usuario, nickname, email, senha_hash, pais_origem, data_criacao | PostgreSQL     |
+| **Transação**              | id_transacao, id_usuario, jogador_id, tipo, valor, data_transacao  | PostgreSQL     |
+| **Estatística do Jogador** | id, nome, ritmo, chute, passe, dribles, defesa, fisico             | MongoDB        |
+| **Jogador**                | id, nome, overall, posicao, quantidade, raridade, valor            | Cassandra      |
 
 ---
 
 ## 5) Estrutura do repositório
+
 ```
 Banco_de_dados/
-├─ s1.py                      # Serviço S1 (GUI Tkinter)
-├─ s2.py                      # Serviço S2 (Flask + REST)
+├─ s1.py                      # Interface gráfica e cliente (Tkinter)
+├─ s2.py                      # Serviço Flask (backend)
 ├─ postgres.py                # Conexão PostgreSQL
 ├─ mongodb.py                 # Conexão MongoDB
 ├─ cassandra_connect.py       # Conexão Cassandra
-├─ usuarios.csv               # Amostra de usuários (RDB)
-├─ transacoes.csv             # Amostra de transações (RDB)
-├─ jogadores.csv              # Amostra de jogadores (Cassandra)
-├─ Informações.Estatisticas_jogador.json   # Amostra de docs (Mongo)
-└─ s1_logs.jsonl              # Logs de S1 (gerado em tempo de execução)
+├─ usuarios.csv               # Dados de usuários
+├─ transacoes.csv             # Dados de transações
+├─ jogadores.csv              # Dados de jogadores
+├─ Informacoes.Estatisticas_jogador.json   # Dados de estatísticas
+└─ s1_logs.jsonl              # Logs do cliente
 ```
 
 ---
 
 ## 6) Endpoints do S2 (Flask)
-Base URL padrão: `http://127.0.0.1:5000`
 
-- `GET  /health` → status/heartbeat.  
-- `POST /usuarios` → insere usuário no Postgres (`fut.usuarios`).  
-- `GET  /usuarios?nickname=...` **ou** `?id_usuario=...` → lista usuários/filtra.  
-- `POST /transacoes` → insere transação no Postgres (`fut.transacoes`).  
-- `GET  /transacoes?nickname=...` **ou** `?id_usuario=...` → lista/filtra.  
-- `POST /estatisticas` → insere documento no Mongo (`Estatisticas_jogador`).  
-- `GET  /estatisticas` → lista documentos (oculta `_id`, ordena por `id` se existir).  
-- `POST /jogadores` → insere registro em Cassandra (`futdb.jogadores`).  
-- `GET  /jogadores` → lista jogadores (ordenado em memória por `id`).
+Base URL: `http://127.0.0.1:5000`
 
-> O S1 já envia **payloads de exemplo** para todos os `POST` (vide botões “＋” na GUI).
+| Método | Rota          | Descrição                         |
+| ------ | ------------- | --------------------------------- |
+| GET    | /health       | Teste de conexão                  |
+| POST   | /usuarios     | Insere um novo usuário            |
+| GET    | /usuarios     | Lista os usuários cadastrados     |
+| POST   | /transacoes   | Insere uma nova transação         |
+| GET    | /transacoes   | Lista transações realizadas       |
+| POST   | /estatisticas | Insere estatísticas de jogador    |
+| GET    | /estatisticas | Lista estatísticas cadastradas    |
+| POST   | /jogadores    | Insere jogador no banco Cassandra |
+| GET    | /jogadores    | Lista jogadores cadastrados       |
 
 ---
 
-## 7) Pré‑requisitos
-- **Python 3.11+** (bibliotecas: `flask`, `flask-cors`, `requests`, `psycopg2-binary`, `pymongo`, `cassandra-driver`, `tkinter`).  
-- **PostgreSQL 14+** (local).  
-- **MongoDB 6+** (local).  
-- **Cassandra 4.x** (local ou via Docker).
+## 7) Requisitos para execução
 
-Instalação das dependências Python:
+**Softwares:**
+
+* Python 3.11+
+* PostgreSQL
+* MongoDB
+* Cassandra (pode ser via Docker)
+
+**Instalação das bibliotecas:**
+
 ```bash
 pip install flask flask-cors requests psycopg2-binary pymongo cassandra-driver
 ```
 
 ---
 
-## 8) Preparação dos bancos
+## 8) Criação dos bancos
 
-### 8.1 PostgreSQL (RDB)
-1. Crie o banco e o schema (ajuste credenciais em `postgres.py` — **não comite senhas reais**):
+### PostgreSQL
+
 ```sql
 CREATE DATABASE "Fifa_Ultimate";
-\c Fifa_Ultimate;
-
 CREATE SCHEMA fut;
 
 CREATE TABLE fut.usuarios (
-  id_usuario   INT PRIMARY KEY,
-  nickname     TEXT NOT NULL UNIQUE,
-  email        TEXT NOT NULL UNIQUE,
-  senha_hash   TEXT NOT NULL,
-  pais_origem  TEXT,
-  data_criacao TIMESTAMP NOT NULL DEFAULT now()
+  id_usuario INT PRIMARY KEY,
+  nickname TEXT,
+  email TEXT,
+  senha_hash TEXT,
+  pais_origem TEXT,
+  data_criacao TIMESTAMP
 );
 
 CREATE TABLE fut.transacoes (
-  id_transacao   INT PRIMARY KEY,
-  id_usuario     INT NOT NULL REFERENCES fut.usuarios(id_usuario),
-  jogador_id     INT NOT NULL,
-  tipo           TEXT CHECK (tipo IN ('COMPRA','VENDA')),
-  valor          NUMERIC(12,2) NOT NULL,
-  data_transacao DATE NOT NULL DEFAULT CURRENT_DATE
+  id_transacao INT PRIMARY KEY,
+  id_usuario INT REFERENCES fut.usuarios(id_usuario),
+  jogador_id INT,
+  tipo TEXT,
+  valor NUMERIC,
+  data_transacao DATE
 );
 ```
 
-2. Se quiser, carregue amostras (psql `\copy` a partir dos CSVs do repositório).
+### MongoDB
 
-> O arquivo `postgres.py` define o **dbname** `Fifa_Ultimate` e utiliza o **schema** `fut` nos SQLs. Ajuste `host`, `user`, `password` conforme seu ambiente.
+Banco: `Informacoes`
+Coleção: `Estatisticas_jogador`
 
----
-
-### 8.2 MongoDB (Document Store)
-- Banco: **`Informações`** (atenção ao acento).  
-- Coleção: **`Estatisticas_jogador`**.
-
-Importe o JSON de amostra (ou envie via endpoint `POST /estatisticas`):
 ```bash
-# via mongoimport (adaptar caminho):
-mongoimport --uri "mongodb://localhost:27017/Informações"   --collection Estatisticas_jogador   --file "Informações.Estatisticas_jogador.json"   --jsonArray
+mongoimport --uri "mongodb://localhost:27017/Informacoes" \
+  --collection Estatisticas_jogador \
+  --file Informacoes.Estatisticas_jogador.json --jsonArray
 ```
 
----
+### Cassandra
 
-### 8.3 Cassandra (Wide‑Column)
-Suba Cassandra rapidamente com Docker:
-```bash
-docker run -d --name cassandra -p 9042:9042 cassandra:4.1
-# aguarde ~30-60s até ficar pronto
-docker exec -it cassandra cqlsh
-```
-Crie o **keyspace** e a **tabela** esperados por `s2.py`:
 ```sql
-CREATE KEYSPACE IF NOT EXISTS futdb
-WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
-
+CREATE KEYSPACE futdb WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
 USE futdb;
 
-CREATE TABLE IF NOT EXISTS jogadores (
-  id          int PRIMARY KEY,
-  nome        text,
-  overall     int,
-  posicao     text,
-  quantidade  int,
-  raridade    text,
-  valor       decimal
+CREATE TABLE jogadores (
+  id int PRIMARY KEY,
+  nome text,
+  overall int,
+  posicao text,
+  quantidade int,
+  raridade text,
+  valor decimal
 );
 ```
-> A listagem em `GET /jogadores` faz `ORDER BY` **em memória** (boa prática em Cassandra é modelar conforme o *query pattern*).
 
 ---
 
-## 9) Execução
+## 9) Execução do sistema
 
-### Passo 1 — iniciar S2 (backend)
+1. Inicie o servidor Flask (S2):
+
 ```bash
 python s2.py
-# sobe em http://127.0.0.1:5000
 ```
 
-### Passo 2 — iniciar S1 (cliente/GUI)
+2. Em outro terminal, execute a interface (S1):
+
 ```bash
 python s1.py
-# abre interface Tkinter com botões para listar/inserir em cada banco
 ```
-O S1 gravará **todas as requisições** e **respostas** em `s1_logs.jsonl` (um JSON por linha).
+
+A interface permite inserir e listar dados de cada banco, e gera logs automáticos.
 
 ---
 
-## 10) Evidências e validação
-- Guia “Listar” na GUI → `GET /usuarios`, `GET /transacoes`, `GET /estatisticas`, `GET /jogadores`.  
-- Guia “Inserir” na GUI → exemplos reais de `POST` para cada banco (payloads prontos).  
-- `GET /health` para *heartbeat*.  
-- Logs em `s1_logs.jsonl` para auditoria (requisito de “S1 armazena requisições e respostas”).
+## 10) Testes e resultados
+
+* **Listar:** exibe os registros salvos em cada banco de dados.
+* **Inserir:** cria novos dados reais de exemplo (usuário, transação, jogador, estatística).
+* **Logs:** todas as requisições e respostas ficam registradas em `s1_logs.jsonl`.
 
 ---
 
-## 11) Como S2 foi implementado
-- **Flask + CORS** para os endpoints REST.  
-- **PostgreSQL:** `psycopg2` com SQL explícito (DML/SELECT).  
-- **MongoDB:** `pymongo` (coleção `Estatisticas_jogador`).  
-- **Cassandra:** `cassandra-driver` com `SimpleStatement`, `keyspace=futdb`.
+## 11) Autores
 
-Tratamento básico de indisponibilidade (ex.: `ServerSelectionTimeoutError` no Mongo).
-
----
-
-## 12) Autores
-- **Guilherme Matias** — RA: 22.122.071-8  
-- **Caio Arnoni** — RA: 22.221.019-7  
-- **Gustavo Lemos** — RA: 22.123.064-2
-
----
-
-
+* **Guilherme Matias** — RA: 22.122.071-8
+* **Caio Arnoni** — RA: 22.221.019-7
+* **Gustavo Lemos** — RA: 22.123.064-2
