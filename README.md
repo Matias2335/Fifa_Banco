@@ -2,7 +2,7 @@
 
 **Disciplina:** CC6240 — Tópicos Avançados de Banco de Dados  
 **Tema:** Fifa Ultimate Team (catálogo de jogadores, usuários e transações)  
-**Arquitetura:** S1 ↔ S2 com **PostgreSQL** (RDB), **MongoDB** (Document Store) e **Cassandra** (Wide‑Column)
+**Arquitetura:** S1 ↔ S2 com **PostgreSQL** (RDB), **MongoDB** (DB1) e **Cassandra** (DB2)
 
 ---
 
