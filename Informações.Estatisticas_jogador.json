@@ -1,0 +1,806 @@
+[{
+  "_id": {
+    "$oid": "68f6b741922c8490f2e27f8d"
+  },
+  "id": 1,
+  "Nome": "Toni Kroos",
+  "Ritmo": 71,
+  "Chute": 82,
+  "Passe": 91,
+  "Dribles": 86,
+  "Defesa": 76,
+  "Fisico": 74
+},
+{
+  "_id": {
+    "$oid": "68f6b7be922c8490f2e27f91"
+  },
+  "id": 2,
+  "Nome": "Pelé",
+  "Ritmo": 93,
+  "Chute": 94,
+  "Passe": 91,
+  "Dribles": 94,
+  "Defesa": 58,
+  "Fisico": 74
+},
+{
+  "_id": {
+    "$oid": "68f6b828922c8490f2e27f93"
+  },
+  "id": 3,
+  "Nome": "Ronaldo",
+  "Ritmo": 94,
+  "Chute": 94,
+  "Passe": 79,
+  "Dribles": 94,
+  "Defesa": 43,
+  "Fisico": 75
+},
+{
+  "_id": {
+    "$oid": "68f6b993922c8490f2e27f97"
+  },
+  "id": 4,
+  "Nome": "Cristiano Ronaldo",
+  "Ritmo": 82,
+  "Chute": 91,
+  "Passe": 79,
+  "Dribles": 83,
+  "Defesa": 37,
+  "Fisico": 80
+},
+{
+  "_id": {
+    "$oid": "68f6b9d3922c8490f2e27f99"
+  },
+  "id": 5,
+  "Nome": "Lionel Messi",
+  "Ritmo": 82,
+  "Chute": 87,
+  "Passe": 87,
+  "Dribles": 91,
+  "Defesa": 35,
+  "Fisico": 66
+},
+{
+  "_id": {
+    "$oid": "68f6ba22922c8490f2e27f9b"
+  },
+  "id": 6,
+  "Nome": "Buffon",
+  "Ritmo": 94,
+  "Chute": 86,
+  "Passe": 78,
+  "Dribles": 93,
+  "Defesa": 51,
+  "Fisico": 89
+},
+{
+  "_id": {
+    "$oid": "68f6ba5e922c8490f2e27f9d"
+  },
+  "id": 7,
+  "Nome": "Thibaunt Courtois",
+  "Ritmo": 85,
+  "Chute": 89,
+  "Passe": 76,
+  "Dribles": 90,
+  "Defesa": 46,
+  "Fisico": 88
+},
+{
+  "_id": {
+    "$oid": "68f6bab0922c8490f2e27f9f"
+  },
+  "id": 8,
+  "Nome": "Gianluigi Donnarumma",
+  "Ritmo": 90,
+  "Chute": 83,
+  "Passe": 70,
+  "Dribles": 90,
+  "Defesa": 52,
+  "Fisico": 87
+},
+{
+  "_id": {
+    "$oid": "68f6e05e922c8490f2e27fa2"
+  },
+  "id": 9,
+  "Nome": "Maldini",
+  "Ritmo": 85,
+  "Chute": 55,
+  "Passe": 74,
+  "Dribles": 69,
+  "Defesa": 95,
+  "Fisico": 82
+},
+{
+  "_id": {
+    "$oid": "68f6e08f922c8490f2e27fa4"
+  },
+  "id": 10,
+  "Nome": "Baresi",
+  "Ritmo": 73,
+  "Chute": 48,
+  "Passe": 75,
+  "Dribles": 70,
+  "Defesa": 94,
+  "Fisico": 83
+},
+{
+  "_id": {
+    "$oid": "68f6e0c4922c8490f2e27fa6"
+  },
+  "id": 11,
+  "Nome": "Ferdinand",
+  "Ritmo": 82,
+  "Chute": 48,
+  "Passe": 65,
+  "Dribles": 64,
+  "Defesa": 90,
+  "Fisico": 85
+},
+{
+  "_id": {
+    "$oid": "68f6e10c922c8490f2e27fa8"
+  },
+  "id": 12,
+  "Nome": "Virgil van Dijk",
+  "Ritmo": 73,
+  "Chute": 60,
+  "Passe": 72,
+  "Dribles": 72,
+  "Defesa": 90,
+  "Fisico": 87
+},
+{
+  "_id": {
+    "$oid": "68f6e171922c8490f2e27faa"
+  },
+  "id": 13,
+  "Nome": "Rúben Dias",
+  "Ritmo": 59,
+  "Chute": 39,
+  "Passe": 69,
+  "Dribles": 69,
+  "Defesa": 86,
+  "Fisico": 84
+},
+{
+  "_id": {
+    "$oid": "68f6e1cc922c8490f2e27fac"
+  },
+  "id": 14,
+  "Nome": "Éder Militão",
+  "Ritmo": 84,
+  "Chute": 53,
+  "Passe": 72,
+  "Dribles": 74,
+  "Defesa": 87,
+  "Fisico": 84
+},
+{
+  "_id": {
+    "$oid": "68f6e68c922c8490f2e27faf"
+  },
+  "id": 15,
+  "Nome": "Antonio Rüdiger",
+  "Ritmo": 79,
+  "Chute": 55,
+  "Passe": 72,
+  "Dribles": 70,
+  "Defesa": 84,
+  "Fisico": 86
+},
+{
+  "_id": {
+    "$oid": "68f6e6f2922c8490f2e27fb2"
+  },
+  "id": 16,
+  "Nome": "Marquinhos",
+  "Ritmo": 78,
+  "Chute": 56,
+  "Passe": 75,
+  "Dribles": 74,
+  "Defesa": 89,
+  "Fisico": 80
+},
+{
+  "_id": {
+    "$oid": "68f6e82e922c8490f2e27fb4"
+  },
+  "id": 17,
+  "Nome": "Matthijs de Ligt",
+  "Ritmo": 62,
+  "Chute": 61,
+  "Passe": 62,
+  "Dribles": 67,
+  "Defesa": 82,
+  "Fisico": 83
+},
+{
+  "_id": {
+    "$oid": "68fa32f5feba879e6aa95533"
+  },
+  "id": 18,
+  "Nome": "Gabriel Magalhães",
+  "Ritmo": 64,
+  "Chute": 44,
+  "Passe": 64,
+  "Dribles": 65,
+  "Defesa": 88,
+  "Fisico": 84
+},
+{
+  "_id": {
+    "$oid": "68fa3433feba879e6aa95536"
+  },
+  "id": 19,
+  "Nome": "Cafu",
+  "Ritmo": 90,
+  "Chute": 56,
+  "Passe": 83,
+  "Dribles": 85,
+  "Defesa": 88,
+  "Fisico": 83
+},
+{
+  "_id": {
+    "$oid": "68fa38c5feba879e6aa95539"
+  },
+  "id": 20,
+  "Nome": "Kyle Walker",
+  "Ritmo": 80,
+  "Chute": 64,
+  "Passe": 75,
+  "Dribles": 76,
+  "Defesa": 77,
+  "Fisico": 78
+},
+{
+  "_id": {
+    "$oid": "68fa3973feba879e6aa9553b"
+  },
+  "id": 21,
+  "Nome": "Archraf Hakimi",
+  "Ritmo": 92,
+  "Chute": 79,
+  "Passe": 82,
+  "Dribles": 83,
+  "Defesa": 82,
+  "Fisico": 79
+},
+{
+  "_id": {
+    "$oid": "68fa3ae9feba879e6aa9553d"
+  },
+  "id": 22,
+  "Nome": "Kieran Trippier",
+  "Ritmo": 66,
+  "Chute": 65,
+  "Passe": 83,
+  "Dribles": 77,
+  "Defesa": 80,
+  "Fisico": 71
+},
+{
+  "_id": {
+    "$oid": "68fa3f97feba879e6aa9553f"
+  },
+  "id": 23,
+  "Nome": "Carvajal",
+  "Ritmo": 80,
+  "Chute": 58,
+  "Passe": 79,
+  "Dribles": 81,
+  "Defesa": 81,
+  "Fisico": 79
+},
+{
+  "_id": {
+    "$oid": "68fa4008feba879e6aa95541"
+  },
+  "id": 24,
+  "Nome": "Alexander-Arnold",
+  "Ritmo": 83,
+  "Chute": 73,
+  "Passe": 90,
+  "Dribles": 83,
+  "Defesa": 85,
+  "Fisico": 78
+},
+{
+  "_id": {
+    "$oid": "68fa41fafeba879e6aa95544"
+  },
+  "id": 25,
+  "Nome": "Roberto Carlos",
+  "Ritmo": 83,
+  "Chute": 73,
+  "Passe": 90,
+  "Dribles": 83,
+  "Defesa": 85,
+  "Fisico": 78
+},
+{
+  "_id": {
+    "$oid": "68fa45a9feba879e6aa95548"
+  },
+  "id": 26,
+  "Nome": "Theo Hernández",
+  "Ritmo": 90,
+  "Chute": 76,
+  "Passe": 78,
+  "Dribles": 83,
+  "Defesa": 79,
+  "Fisico": 83
+},
+{
+  "_id": {
+    "$oid": "68fab0b4feba879e6aa9554a"
+  },
+  "id": 27,
+  "Nome": "Davies",
+  "Ritmo": 94,
+  "Chute": 66,
+  "Passe": 78,
+  "Dribles": 85,
+  "Defesa": 74,
+  "Fisico": 76
+},
+{
+  "_id": {
+    "$oid": "68fab286feba879e6aa9554c"
+  },
+  "id": 28,
+  "Nome": "Robertson",
+  "Ritmo": 74,
+  "Chute": 61,
+  "Passe": 80,
+  "Dribles": 77,
+  "Defesa": 79,
+  "Fisico": 75
+},
+{
+  "_id": {
+    "$oid": "68fab318feba879e6aa9554e"
+  },
+  "id": 29,
+  "Nome": "Mendy",
+  "Ritmo": 85,
+  "Chute": 64,
+  "Passe": 74,
+  "Dribles": 75,
+  "Defesa": 78,
+  "Fisico": 84
+},
+{
+  "_id": {
+    "$oid": "68fab444feba879e6aa95550"
+  },
+  "id": 30,
+  "Nome": "Zidane",
+  "Ritmo": 83,
+  "Chute": 90,
+  "Passe": 94,
+  "Dribles": 94,
+  "Defesa": 73,
+  "Fisico": 84
+},
+{
+  "_id": {
+    "$oid": "68fab56ffeba879e6aa95552"
+  },
+  "id": 31,
+  "Nome": "Gullit",
+  "Ritmo": 85,
+  "Chute": 88,
+  "Passe": 88,
+  "Dribles": 86,
+  "Defesa": 80,
+  "Fisico": 87
+},
+{
+  "_id": {
+    "$oid": "68fab64bfeba879e6aa95554"
+  },
+  "id": 32,
+  "Nome": "Vieira",
+  "Ritmo": 82,
+  "Chute": 78,
+  "Passe": 80,
+  "Dribles": 82,
+  "Defesa": 88,
+  "Fisico": 90
+},
+{
+  "_id": {
+    "$oid": "68fab711feba879e6aa95556"
+  },
+  "id": 33,
+  "Nome": "De Bruyne",
+  "Ritmo": 66,
+  "Chute": 83,
+  "Passe": 92,
+  "Dribles": 84,
+  "Defesa": 65,
+  "Fisico": 72
+},
+{
+  "_id": {
+    "$oid": "68fab839feba879e6aa95558"
+  },
+  "id": 34,
+  "Nome": "Modric",
+  "Ritmo": 68,
+  "Chute": 74,
+  "Passe": 86,
+  "Dribles": 86,
+  "Defesa": 70,
+  "Fisico": 62
+},
+{
+  "_id": {
+    "$oid": "68fab8defeba879e6aa9555a"
+  },
+  "id": 35,
+  "Nome": "Rodri",
+  "Ritmo": 65,
+  "Chute": 80,
+  "Passe": 86,
+  "Dribles": 84,
+  "Defesa": 86,
+  "Fisico": 85
+},
+{
+  "_id": {
+    "$oid": "68fabb64feba879e6aa9555d"
+  },
+  "id": 36,
+  "Nome": "Valverde",
+  "Ritmo": 88,
+  "Chute": 84,
+  "Passe": 84,
+  "Dribles": 84,
+  "Defesa": 83,
+  "Fisico": 85
+},
+{
+  "_id": {
+    "$oid": "68fac3ecfeba879e6aa9555f"
+  },
+  "id": 37,
+  "Nome": "Jude Bellingham",
+  "Ritmo": 80,
+  "Chute": 86,
+  "Passe": 83,
+  "Dribles": 90,
+  "Defesa": 78,
+  "Fisico": 85
+},
+{
+  "_id": {
+    "$oid": "68fac4a3feba879e6aa95561"
+  },
+  "id": 38,
+  "Nome": "Enzo Fernández",
+  "Ritmo": 68,
+  "Chute": 75,
+  "Passe": 85,
+  "Dribles": 81,
+  "Defesa": 73,
+  "Fisico": 75
+},
+{
+  "_id": {
+    "$oid": "68faebaafeba879e6aa95563"
+  },
+  "id": 39,
+  "Nome": "Frenkie de Jong",
+  "Ritmo": 82,
+  "Chute": 71,
+  "Passe": 85,
+  "Dribles": 87,
+  "Defesa": 78,
+  "Fisico": 77
+},
+{
+  "_id": {
+    "$oid": "68faecf8feba879e6aa95567"
+  },
+  "id": 40,
+  "Nome": "Bruno Fernandes",
+  "Ritmo": 75,
+  "Chute": 84,
+  "Passe": 90,
+  "Dribles": 85,
+  "Defesa": 70,
+  "Fisico": 77
+},
+{
+  "_id": {
+    "$oid": "68faf0a0feba879e6aa95569"
+  },
+  "id": 41,
+  "Nome": "Declan Rice",
+  "Ritmo": 72,
+  "Chute": 73,
+  "Passe": 84,
+  "Dribles": 80,
+  "Defesa": 83,
+  "Fisico": 83
+},
+{
+  "_id": {
+    "$oid": "68faf0dafeba879e6aa9556b"
+  },
+  "id": 42,
+  "Nome": "Pedri",
+  "Ritmo": 77,
+  "Chute": 73,
+  "Passe": 85,
+  "Dribles": 91,
+  "Defesa": 78,
+  "Fisico": 77
+},
+{
+  "_id": {
+    "$oid": "68faf1b2feba879e6aa9556d"
+  },
+  "id": 43,
+  "Nome": "Gavi",
+  "Ritmo": 76,
+  "Chute": 66,
+  "Passe": 78,
+  "Dribles": 85,
+  "Defesa": 68,
+  "Fisico": 70
+},
+{
+  "_id": {
+    "$oid": "68faf2acfeba879e6aa9556f"
+  },
+  "id": 44,
+  "Nome": "Florian Wirtz",
+  "Ritmo": 80,
+  "Chute": 82,
+  "Passe": 88,
+  "Dribles": 90,
+  "Defesa": 54,
+  "Fisico": 67
+},
+{
+  "_id": {
+    "$oid": "6907a259e5475e7ff51713a9"
+  },
+  "id": 45,
+  "Nome": "Ronaldinho",
+  "Ritmo": 91,
+  "Chute": 89,
+  "Passe": 90,
+  "Dribles": 95,
+  "Defesa": 38,
+  "Fisico": 80
+},
+{
+  "_id": {
+    "$oid": "6907a3f2e5475e7ff51713ac"
+  },
+  "id": 46,
+  "Nome": "Thierry Henry",
+  "Ritmo": 93,
+  "Chute": 90,
+  "Passe": 82,
+  "Dribles": 89,
+  "Defesa": 51,
+  "Fisico": 78
+},
+{
+  "_id": {
+    "$oid": "6907a4ebe5475e7ff51713ae"
+  },
+  "id": 47,
+  "Nome": "Kylian Mbappé",
+  "Ritmo": 98,
+  "Chute": 91,
+  "Passe": 82,
+  "Dribles": 93,
+  "Defesa": 38,
+  "Fisico": 77
+},
+{
+  "_id": {
+    "$oid": "6907a60fe5475e7ff51713b0"
+  },
+  "id": 48,
+  "Nome": "Erling Haaland",
+  "Ritmo": 87,
+  "Chute": 92,
+  "Passe": 72,
+  "Dribles": 81,
+  "Defesa": 47,
+  "Fisico": 89
+},
+{
+  "_id": {
+    "$oid": "6907b0f3e5475e7ff51713b2"
+  },
+  "id": 49,
+  "Nome": "Vinícius Júnior",
+  "Ritmo": 96,
+  "Chute": 85,
+  "Passe": 82,
+  "Dribles": 92,
+  "Defesa": 31,
+  "Fisico": 70
+},
+{
+  "_id": {
+    "$oid": "6907b190e5475e7ff51713b4"
+  },
+  "id": 50,
+  "Nome": "Mohamed Salah",
+  "Ritmo": 90,
+  "Chute": 89,
+  "Passe": 87,
+  "Dribles": 91,
+  "Defesa": 47,
+  "Fisico": 78
+},
+{
+  "_id": {
+    "$oid": "6907b287e5475e7ff51713b6"
+  },
+  "id": 51,
+  "Nome": "Robert Lewandowski",
+  "Ritmo": 74,
+  "Chute": 89,
+  "Passe": 79,
+  "Dribles": 85,
+  "Defesa": 44,
+  "Fisico": 84
+},
+{
+  "_id": {
+    "$oid": "6907b4fbe5475e7ff51713b8"
+  },
+  "id": 52,
+  "Nome": "Ousmane Dembélé",
+  "Ritmo": 91,
+  "Chute": 88,
+  "Passe": 83,
+  "Dribles": 93,
+  "Defesa": 50,
+  "Fisico": 69
+},
+{
+  "_id": {
+    "$oid": "6907b876e5475e7ff51713ba"
+  },
+  "id": 53,
+  "Nome": "Harry Kane",
+  "Ritmo": 70,
+  "Chute": 93,
+  "Passe": 84,
+  "Dribles": 83,
+  "Defesa": 50,
+  "Fisico": 83
+},
+{
+  "_id": {
+    "$oid": "6907b919e5475e7ff51713bc"
+  },
+  "id": 54,
+  "Nome": "Raphinha",
+  "Ritmo": 91,
+  "Chute": 84,
+  "Passe": 85,
+  "Dribles": 87,
+  "Defesa": 53,
+  "Fisico": 75
+},
+{
+  "_id": {
+    "$oid": "6907b9a9e5475e7ff51713be"
+  },
+  "id": 55,
+  "Nome": "Lamine Yamal",
+  "Ritmo": 85,
+  "Chute": 81,
+  "Passe": 86,
+  "Dribles": 90,
+  "Defesa": 23,
+  "Fisico": 53
+},
+{
+  "_id": {
+    "$oid": "69080736e5475e7ff51713c0"
+  },
+  "id": 56,
+  "Nome": "Lautaro Martínez",
+  "Ritmo": 81,
+  "Chute": 88,
+  "Passe": 75,
+  "Dribles": 84,
+  "Defesa": 51,
+  "Fisico": 83
+},
+{
+  "_id": {
+    "$oid": "690807dce5475e7ff51713c2"
+  },
+  "id": 57,
+  "Nome": "Bukayo Saka",
+  "Ritmo": 84,
+  "Chute": 82,
+  "Passe": 85,
+  "Dribles": 88,
+  "Defesa": 60,
+  "Fisico": 73
+},
+{
+  "_id": {
+    "$oid": "69080ea5e5475e7ff51713c5"
+  },
+  "id": 58,
+  "Nome": "Jamal Musiala",
+  "Ritmo": 80,
+  "Chute": 82,
+  "Passe": 80,
+  "Dribles": 90,
+  "Defesa": 66,
+  "Fisico": 65
+},
+{
+  "_id": {
+    "$oid": "69080fa7e5475e7ff51713c7"
+  },
+  "id": 59,
+  "Nome": "Rodrygo",
+  "Ritmo": 89,
+  "Chute": 82,
+  "Passe": 81,
+  "Dribles": 88,
+  "Defesa": 32,
+  "Fisico": 66
+},
+{
+  "_id": {
+    "$oid": "69081059e5475e7ff51713c9"
+  },
+  "id": 60,
+  "Nome": "Kvaratskhelia",
+  "Ritmo": 86,
+  "Chute": 80,
+  "Passe": 83,
+  "Dribles": 88,
+  "Defesa": 58,
+  "Fisico": 78
+},
+{
+  "_id": {
+    "$oid": "690bf166fd71429508ec128b"
+  },
+  "id": 61,
+  "nome": "Viktor Gyökeres",
+  "ritmo": 90,
+  "chute": 86,
+  "passe": 73,
+  "dribles": 81,
+  "defesa": 36,
+  "fisico": 91
+},
+{
+  "_id": {
+    "$oid": "690d4d70801b4d458c35bc92"
+  },
+  "id": 62,
+  "nome": "Iniesta",
+  "ritmo": 83,
+  "chute": 80,
+  "passe": 91,
+  "dribles": 92,
+  "defesa": 62,
+  "fisico": 66
+}]

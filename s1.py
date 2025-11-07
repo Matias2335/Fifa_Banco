@@ -101,6 +101,7 @@ def carregar_jogadores():
         messagebox.showerror("Erro", f"{status}: {body}")
 
 # ======= INSERIR (POST S2) =======
+
 def inserir_usuario():
     data = {
         "id_usuario": 21,
@@ -163,6 +164,7 @@ def inserir_jogador():
         messagebox.showinfo("Jogador", "Jogador real inserido com sucesso.")
     else:
         messagebox.showerror("Erro", f"{status}: {body}")
+
 
 # ======= GUI =======
 root = tk.Tk()
