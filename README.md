@@ -96,7 +96,7 @@ Base URL: `http://127.0.0.1:5000`
 - **Python 3.11+**
 - **PostgreSQL** (local)
 - **MongoDB** (local)
-- **Cassandra** (pode ser via Docker)
+- **Cassandra** (via Docker)
 
 ### Bibliotecas Python
 
