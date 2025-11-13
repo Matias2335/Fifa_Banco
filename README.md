@@ -89,29 +89,40 @@ Base URL: `http://127.0.0.1:5000`
 
 ---
 
-## 7) Requisitos para execução
+# 🧩 7) Requisitos para execução
 
-**Softwares:**
+### Softwares necessários
 
-* Python 3.11+
-* PostgreSQL
-* MongoDB
-* Cassandra (pode ser via Docker)
+- **Python 3.11+**
+- **PostgreSQL** (local)
+- **MongoDB** (local)
+- **Cassandra** (pode ser via Docker)
 
-**Instalação das bibliotecas:**
+### Bibliotecas Python
+
+No diretório do projeto, execute:
 
 ```bash
 pip install flask flask-cors requests psycopg2-binary pymongo cassandra-driver
 ```
-
 ---
 
-## 8) Criação dos bancos
+## 8) Criação e carga inicial dos bancos de dados
+Você tem duas opções: <br>
+* 1 - Usar a interface S1 para ir cadastrando os dados manualmente (usuário, transação, jogador, estatísticas); <br>
+* 2 - Carregar os arquivos de exemplo do repositório (.csv e .json) para já popular os bancos.
 
-### PostgreSQL
+## 8.1 PostgreSQL
+* 1 - Acesse o psql:
+```bash
+psql -U seu_usuario
+```
 
-```sql
+* 2 - Crie o banco e o schema:
+```
 CREATE DATABASE "Fifa_Ultimate";
+\c "Fifa_Ultimate";
+
 CREATE SCHEMA fut;
 
 CREATE TABLE fut.usuarios (
@@ -132,22 +143,42 @@ CREATE TABLE fut.transacoes (
   data_transacao DATE
 );
 ```
+* 3 - Importe os arquivos CSV do repositório (usuarios.csv e transacoes.csv). <br>
+Dentro do psql, no banco Fifa_Ultimate:
+```
+\copy fut.usuarios FROM 'caminho/para/usuarios.csv' DELIMITER ',' CSV HEADER;
+\copy fut.transacoes FROM 'caminho/para/transacoes.csv' DELIMITER ',' CSV HEADER;
+```
+## 8.2 MongoDB 
 
-### MongoDB
-
-Banco: `Informacoes`
-Coleção: `Estatisticas_jogador`
-
-```bash
+Banco: ```Informacoes```<br>
+Coleção: ```Estatisticas_jogador``` <br>
+No diretório onde está o arquivo ```Informacoes.Estatisticas_jogador.json```, execute: 
+```
 mongoimport --uri "mongodb://localhost:27017/Informacoes" \
   --collection Estatisticas_jogador \
-  --file Informacoes.Estatisticas_jogador.json --jsonArray
+  --file Informacoes.Estatisticas_jogador.json \
+  --jsonArray
 ```
+## 8.3 Cassandra (via Docker)
 
-### Cassandra
+* 1 - Suba um container com Cassandra:
+  
+```
+docker run -d --name cassandra \
+  -p 9042:9042 cassandra:4.1
+```
+* 2 - Acesse o cqlsh dentro do container:
+```
+docker exec -it cassandra cqlsh
+```
+* 3 - Crie o keyspace e a tabela:
+```
+CREATE KEYSPACE futdb WITH replication = {
+  'class': 'SimpleStrategy',
+  'replication_factor': 1
+};
 
-```sql
-CREATE KEYSPACE futdb WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
 USE futdb;
 
 CREATE TABLE jogadores (
@@ -160,35 +191,56 @@ CREATE TABLE jogadores (
   valor decimal
 );
 ```
-
+* 4 - Para importar o arquivo jogadores.csv <br>
+```
+docker cp jogadores.csv cassandra:/jogadores.csv
+```
 ---
 
-## 9) Execução do sistema
+## ▶️ 9) Execução do sistema
 
-1. Inicie o servidor Flask (S2):
+O projeto é dividido em dois serviços:
 
-```bash
+* S2 – servidor Flask que faz a conexão com os três bancos (PostgreSQL, MongoDB e Cassandra).
+
+* S1 – interface Flask que consome o S2, permite inserir e listar dados, e gera logs.
+
+Passo a passo
+
+* 1 - Com os bancos rodando (PostgreSQL, MongoDB e Cassandra), vá até a pasta do projeto.
+
+* 2 - Em um terminal, inicie o servidor S2:
+
+```
 python s2.py
 ```
-
-2. Em outro terminal, execute a interface (S1):
-
-```bash
+* 3 - Em outro terminal, inicie a interface S1:
+```
 python s1.py
 ```
-
-A interface permite inserir e listar dados de cada banco, e gera logs automáticos.
-
 ---
 
-## 10) Testes e resultados
+## ✅ 10) Testes e resultados
 
-* **Listar:** exibe os registros salvos em cada banco de dados.
-* **Inserir:** cria novos dados reais de exemplo (usuário, transação, jogador, estatística).
-* **Logs:** todas as requisições e respostas ficam registradas em `s1_logs.jsonl`.
+Na interface S1, você poderá:
 
----
+* Inserir dados:
 
+```fut.usuarios``` e ```fut.transacoes``` (PostgreSQL)
+
+```jogadores```(Cassandra)
+
+```Estatisticas_jogador``` (MongoDB).
+
+* Listar dados
+
+Exibe os registros salvos em cada banco em uma interface 
+
+* Ver logs
+
+Todas as requisições e respostas entre S1 e S2 são registradas no arquivo:
+
+```s1_logs.jsonl ```
 ## 11) Autores
 
 * **Guilherme Matias** — RA: 22.122.071-8
